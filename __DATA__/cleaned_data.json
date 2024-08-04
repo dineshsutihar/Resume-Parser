@@ -1,0 +1,48 @@
+{
+  "full_name": "DINESH KUMAR SUTIHAR",
+  "email_id": "dineshsutihar9@gmail.com",
+  "github_portfolio": "dineshsutihar.github.io",
+  "linkedin_id": null,
+  "employment_details": [
+    {
+      "title": "Graphic Designer",
+      "company": "Geeta Technical Hub",
+      "location": "Haryana, India",
+      "duration": "Dec’21 – Mar’22"
+    }
+  ],
+  "technical_skills": [
+    "C",
+    "Java",
+    "Python",
+    "JavaScript",
+    "Node",
+    "React",
+    "MongoDB",
+    "HTML",
+    "CSS",
+    "Oracle SQL",
+    "Git",
+    "GitHub",
+    "OOPS",
+    "DBMS",
+    "Data Structure",
+    "Operating System",
+    "Computer Networks",
+    "Photoshop",
+    "Illustrator",
+    "Figma",
+    "Fl Studio",
+    "Premiere Pro",
+    "Office",
+    "Express",
+    "Socket.IO",
+    "JWT"
+  ],
+  "soft_skills": [
+    "Collaboration",
+    "Problem Solving",
+    "Communication",
+    "Teamwork"
+  ]
+}
