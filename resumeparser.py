@@ -1,32 +1,44 @@
 import os
+import logging
 import google.generativeai as genai
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
 
-# Configure the API key
-genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
+# Configure Logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Choose the appropriate model
+# Validate API Key
+API_KEY = os.getenv('GOOGLE_API_KEY')
+if not API_KEY:
+    raise EnvironmentError("GOOGLE_API_KEY is missing in the environment variables.")
+genai.configure(api_key=API_KEY)
+
+# Gemini Model
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 def ats_extractor(resume_data):
-    prompt = '''
-    You are an AI bot designed to act as a professional for parsing resumes. You are given with resume and your job is to extract the following information from the resume:
-    1. full name
-    2. email id
-    3. github portfolio
-    4. linkedin id
-    5. employment details
-    6. technical skills
-    7. soft skills
-    Give the extracted information from the given data in json format only. \n
-    '''
-    finalPrompt = prompt + resume_data
- 
+    """Extracts structured data from resume text using the Gemini model."""
+    try:
+        prompt = """
+        You are an AI bot designed to parse resumes. Extract the following information from the resume in JSON format:
+        - Full Name
+        - Email ID
+        - GitHub Portfolio
+        - LinkedIn ID
+        - Employment Details
+        - Technical Skills
+        - Soft Skills
+        
+        Resume Text:
+        """
+        final_prompt = f"{prompt}{resume_data}"
 
-    # Generate the response using the Gemini AI model
-    response = model.generate_content(finalPrompt)
+        # Generate AI response
+        response = model.generate_content(final_prompt)
+        return response.text.strip()
 
-    # Print and return the extracted data
-    return response.text
+    except Exception as e:
+        logging.error(f"Error generating AI response: {e}")
+        raise
