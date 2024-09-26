@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Error - Resume Parser</title>
+    <style>
+      #loadingSpinner {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="text-center bg-gray-800 p-8 rounded-md shadow-lg">
+        <h1 class="text-4xl font-bold mb-4">Oops! Something went wrong.</h1>
+        <p class="text-lg mb-6">
+          We encountered an issue while processing your resume. Please try again
+          later.
+        </p>
+        <a
+          href="/"
+          class="bg-blue-500 px-6 py-2 text-lg font-semibold text-white rounded-lg hover:bg-blue-400 transition"
+        >
+          Go Back to Home
+        </a>
+      </div>
+    </div>
+    <script>
+      function showErrorMessage(message) {
+        const errorMessageElement = document.createElement("p");
+        errorMessageElement.classList.add("text-red-500", "mt-4");
+        errorMessageElement.textContent = message;
+        document.querySelector(".text-center").appendChild(errorMessageElement);
+      }
+
+      // Example of showing a custom error message (can be removed in actual usage)
+      setTimeout(() => {
+        showErrorMessage("Server error: Unable to parse the resume.");
+      }, 1000);
+    </script>
+  </body>
+</html>
