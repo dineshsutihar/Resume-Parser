@@ -126,16 +126,84 @@
           </div>
         </div>
       </div>
+
+      <!-- Results Section -->
+      <!-- Results Section -->
+      {% if data %}
+      <div
+        class="mt-10 mx-auto max-w-2xl w-full bg-gray-800 p-6 rounded-md text-white"
+      >
+        <h2 class="text-xl font-semibold mb-4">Parsed Resume Data</h2>
+
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold">Full Name:</h3>
+          <p>{{ data['Full Name'] }}</p>
+        </div>
+
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold">Email ID:</h3>
+          <p>{{ data['Email ID'] }}</p>
+        </div>
+
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold">GitHub Portfolio:</h3>
+          <p>
+            {{ data['GitHub Portfolio'] if data['GitHub Portfolio'] else 'N/A'
+            }}
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold">LinkedIn ID:</h3>
+          <p>{{ data['LinkedIn ID'] if data['LinkedIn ID'] else 'N/A' }}</p>
+        </div>
+
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold">Soft Skills:</h3>
+          {% if data['Soft Skills'] %}
+          <ul class="list-disc pl-6">
+            {% for skill in data['Soft Skills'] %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>N/A</p>
+          {% endif %}
+        </div>
+
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold">Technical Skills:</h3>
+          {% if data['Technical Skills'] %}
+          <ul class="list-disc pl-6">
+            {% for skill in data['Technical Skills'] %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>N/A</p>
+          {% endif %}
+        </div>
+
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold">Employment Details:</h3>
+          {% if data['Employment Details'] %}
+          <div class="pl-6">
+            {% for job in data['Employment Details'] %}
+            <div class="mb-2">
+              <h4 class="text-md font-semibold">{{ job['title'] }}</h4>
+              <p><strong>Company:</strong> {{ job['company'] }}</p>
+              <p><strong>Location:</strong> {{ job['location'] }}</p>
+              <p><strong>Duration:</strong> {{ job['duration'] }}</p>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p>N/A</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
     </div>
-    <!-- Results Section -->
-    {% if data %}
-    <div class="mt-10 max-w-2xl w-full bg-gray-800 p-6 rounded-md">
-      <h2 class="text-xl font-semibold mb-4">Parsed Resume Data</h2>
-      <pre class="bg-gray-700 p-4 rounded-md overflow-auto">
-        {{ data|tojson(indent=2) }}
-      </pre>
-    </div>
-    {% endif %}
     <script>
       function showLoadingSpinner() {
         document.getElementById("loadingSpinner").style.display = "flex";
